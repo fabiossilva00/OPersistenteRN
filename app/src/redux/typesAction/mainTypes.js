@@ -1,0 +1,1 @@
+export const REQUEST_LOADING = 'REQUEST_LOADING'
