@@ -2,12 +2,13 @@ import React from 'react'
 import {
     View,
     StyleSheet,
-    Button
+    Button,
+    Text
 } from 'react-native'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
-import { relatarProblemaAPI } from '../services/requestsAPI/requests'
+import { relatarProblemaAPI, relatarProblemasAPI } from '../services/requestsAPI/requests'
 
 class Main extends React.Component {
 
@@ -16,20 +17,35 @@ class Main extends React.Component {
     }
 
     render() {
+        const {
+            isLoading,
+            relatarProblema,
+            errorMessage,
+        } = this.props
         return(
             <View style={styles.container}>
                 <View style={styles.botoes}>
-                <Button title='Relatar Problemas'
-                    onPress={() => {
-                        this.props.relatarProblemaAPI()
-                    }}
-                />
-                <Button title='Props'
-                    onPress={() => {
-                        console.log(this.props)
-                        
-                    }}
-                />
+                    <Button title='Relatar Problemas'
+                        onPress={() => {
+                            this.props.relatarProblemaAPI()
+                        }}
+                    />
+                    <Button title='Relatar Timeout'
+                        onPress={() => {
+                            this.props.relatarProblemasAPI()
+                        }}
+                    />
+                    <Button title='Props'
+                        onPress={() => {
+                            console.log(this.props)
+                            
+                        }}
+                    />
+                    <View style={{alignItems: 'center'}}>
+                        <Text>{isLoading}</Text>
+                        <Text>{relatarProblema}</Text>
+                        <Text>{errorMessage}</Text>
+                    </View>
                 </View>
             </View>
         )
@@ -44,7 +60,8 @@ const mapStateToProps = store => ({
 
 const mapDispatchToProps = dispatch => 
     bindActionCreators({
-        relatarProblemaAPI
+        relatarProblemaAPI,
+        relatarProblemasAPI
     }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(Main)
