@@ -47,3 +47,46 @@ export function relatarProblemasAPI() {
         })
     }
 }
+
+export function relatarOffline(queue) {
+    console.log('Axios')
+        return dispatch => {
+            function queueRequest() {
+                let count = 0
+                console.log(queue)
+                for (let q in queue) {
+                    console.log({...queue[q].json})
+                    urlBase({
+                        method: queue[q].method,
+                        url: queue[q].endPoint,
+                        data: {...queue[q].json}
+                    })
+                    .then(res => {
+                        console.log(res, 'Sucesso Request')
+                        queue.splice(q, 1)
+                        return 
+                    })
+                    .catch(err => {
+                        console.log('Erro Requisição', err.config)
+
+                    })
+                }
+            }
+            queueRequest()
+        // queue.map(item => {
+        //     urlBase({
+        //         method: item.method,
+        //         url: item.endPoint,
+        //         data: item.json
+        //     })
+        //     .then(res => {
+        //         console.log(res, 'Sucesso Request')
+        //     })
+        //     .catch(err => {
+        //         console.log('Erro Requisição', err.response)
+        //         return
+        //     }) 
+        // })
+
+    }
+}

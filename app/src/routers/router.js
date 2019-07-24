@@ -5,6 +5,8 @@ import {
 } from 'react-navigation'
 
 import Main from '../views/Main'
+import RealmView from '../views/RealmView'
+import Splash from '../views/Splash'
 
 const MainStack = createStackNavigator({
     Main
@@ -12,10 +14,12 @@ const MainStack = createStackNavigator({
 
 const appSwitch = createSwitchNavigator(
     {
-        MainStack
+        MainStack,
+        RealmView,
+        Splash
     },
     {
-        initialRouteName: 'MainStack',
+        initialRouteName: 'Splash',
         defaultnavigationOptions: {}
     }
 )
