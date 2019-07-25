@@ -4,6 +4,7 @@ class QueueOfflineRequest {
         this.dataRequest = queue.dataRequest
         this.method = queue.method
         this.endPoint = queue.endPoint
+        this.tentativas = queue.tentativas
         this.json = new RelatarProblema(queue.jsonRequest)
     }
 

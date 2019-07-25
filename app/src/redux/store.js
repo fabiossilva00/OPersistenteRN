@@ -5,19 +5,19 @@ import thunk from 'redux-thunk'
 
 import combineReducers from './combineReducers'
 
-const persistConfig = {
-    key: 'root',
-    storage
-}
+// const persistConfig = {
+//     key: 'root',
+//     storage
+// }
 
-const persistedReducer = persistReducer(persistConfig, combineReducers)
+// const persistedReducer = persistReducer(persistConfig, combineReducers)
 // let store = createStore(persistedReducer)
 
-export default () => {
-    let store = createStore(persistedReducer, applyMiddleware(thunk))
-    let persistor = persistStore(store)
-    return { store, persistor }
-}
+// export default () => {
+//     let store = createStore(persistedReducer, applyMiddleware(thunk))
+//     let persistor = persistStore(store)
+//     return { store, persistor }
+// }
 
 
-// export default createStore(combineReducers, applyMiddleware(thunk))
+export default createStore(combineReducers, applyMiddleware(thunk))

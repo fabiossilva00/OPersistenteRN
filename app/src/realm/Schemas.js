@@ -1,5 +1,4 @@
 import Realm from 'realm'
-import uuid from 'uuid'
 
 export const relatarSchema = {
     name: 'Relatar',
@@ -18,8 +17,9 @@ export const queueRequest = {
     name: 'QueueRequest',
     primaryKey: 'idRequest',
     properties: {
-        idRequest: {type: 'string', default: uuid(), indexed: true},
+        idRequest: {type: 'string', indexed: true},
         dataRequest: {type: 'date', default: new Date()},
+        tentativas: {type: 'int', default: 1}, //tentativas de evnio
         method: {type: 'string'},
         endPoint: {type: 'string'},
         jsonRequest: {type: 'Relatar'}
